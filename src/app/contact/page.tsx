@@ -1,24 +1,59 @@
-"use client";
+import type { Metadata } from "next";
+import { absoluteUrl } from "@/lib/seo";
+import ContactForm from "@/components/ContactForm";
 
-import { useState, type FormEvent } from "react";
+export const metadata: Metadata = {
+  title: "Contact",
+  description:
+    "Get in touch with Local Signal Websites. Tell us about your project and we'll reply within 24 hours.",
+  alternates: { canonical: absoluteUrl("/contact") },
+  openGraph: {
+    title: "Contact | Local Signal Websites",
+    description: "Get in touch with Local Signal Websites. Tell us about your project.",
+    url: absoluteUrl("/contact"),
+    siteName: "Local Signal Websites",
+    type: "website",
+    images: [
+      {
+        url: absoluteUrl("/images/og-image.jpg"),
+        width: 1200,
+        height: 630,
+        alt: "Local Signal Websites — Contact",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Contact | Local Signal Websites",
+    description: "Get in touch with Local Signal Websites. Tell us about your project.",
+    images: [absoluteUrl("/images/og-image.jpg")],
+  },
+};
 
-const serviceOptions = [
-  "Starter Site ($800+)",
-  "Business Site ($2,000+)",
-  "Custom Build",
-  "Not sure yet",
-];
+const localBusinessJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  name: "Local Signal Websites",
+  url: "https://www.localsignalwebsites.studio",
+  description:
+    "Custom website design and development for artists, creators, and small businesses.",
+  areaServed: {
+    "@type": "Country",
+    name: "United States",
+  },
+  address: {
+    "@type": "PostalAddress",
+    addressRegion: "NC",
+    addressCountry: "US",
+  },
+  priceRange: "$$",
+  sameAs: [
+    "https://www.facebook.com/profile.php?id=61576498498498",
+    "https://www.instagram.com/localsignalwebsites",
+  ],
+};
 
 export default function Contact() {
-  const [submitted, setSubmitted] = useState(false);
-
-  function handleSubmit(e: FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    // For now, show a confirmation message.
-    // In production, wire this to a form service (Formspree, Resend, etc.)
-    setSubmitted(true);
-  }
-
   return (
     <>
       {/* Hero */}
@@ -40,152 +75,12 @@ export default function Contact() {
       </section>
 
       {/* Form + Info */}
-      <section className="pb-28 md:pb-36">
+      <section className="pb-20 md:pb-28">
         <div className="max-w-6xl mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-16">
             {/* Form */}
             <div className="lg:col-span-3">
-              {submitted ? (
-                <div className="rounded-2xl bg-signal-500/[0.06] border border-signal-500/20 p-10 text-center">
-                  <div className="w-16 h-16 rounded-full bg-signal-500/15 flex items-center justify-center mx-auto mb-6">
-                    <svg
-                      className="w-8 h-8 text-signal-400"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      strokeWidth={2}
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M5 13l4 4L19 7"
-                      />
-                    </svg>
-                  </div>
-                  <h2 className="text-2xl font-bold mb-3">Message received.</h2>
-                  <p className="text-white/50 max-w-md mx-auto">
-                    Thanks for reaching out. We&apos;ll review your project
-                    details and get back to you within 24 hours.
-                  </p>
-                </div>
-              ) : (
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                    <div>
-                      <label
-                        htmlFor="name"
-                        className="block text-sm font-medium text-white/60 mb-2"
-                      >
-                        Name *
-                      </label>
-                      <input
-                        type="text"
-                        id="name"
-                        name="name"
-                        required
-                        className="w-full px-4 py-3 rounded-xl bg-white/[0.04] border border-white/[0.08] text-white placeholder-white/25 text-sm focus:outline-none focus:ring-2 focus:ring-signal-500/40 focus:border-signal-500/30 transition-all"
-                        placeholder="Your name"
-                      />
-                    </div>
-                    <div>
-                      <label
-                        htmlFor="email"
-                        className="block text-sm font-medium text-white/60 mb-2"
-                      >
-                        Email *
-                      </label>
-                      <input
-                        type="email"
-                        id="email"
-                        name="email"
-                        required
-                        className="w-full px-4 py-3 rounded-xl bg-white/[0.04] border border-white/[0.08] text-white placeholder-white/25 text-sm focus:outline-none focus:ring-2 focus:ring-signal-500/40 focus:border-signal-500/30 transition-all"
-                        placeholder="you@example.com"
-                      />
-                    </div>
-                  </div>
-
-                  <div>
-                    <label
-                      htmlFor="business"
-                      className="block text-sm font-medium text-white/60 mb-2"
-                    >
-                      Business / Project Name
-                    </label>
-                    <input
-                      type="text"
-                      id="business"
-                      name="business"
-                      className="w-full px-4 py-3 rounded-xl bg-white/[0.04] border border-white/[0.08] text-white placeholder-white/25 text-sm focus:outline-none focus:ring-2 focus:ring-signal-500/40 focus:border-signal-500/30 transition-all"
-                      placeholder="Your business or project name"
-                    />
-                  </div>
-
-                  <div>
-                    <label
-                      htmlFor="service"
-                      className="block text-sm font-medium text-white/60 mb-2"
-                    >
-                      What are you looking for?
-                    </label>
-                    <select
-                      id="service"
-                      name="service"
-                      className="w-full px-4 py-3 rounded-xl bg-white/[0.04] border border-white/[0.08] text-white text-sm focus:outline-none focus:ring-2 focus:ring-signal-500/40 focus:border-signal-500/30 transition-all appearance-none cursor-pointer"
-                      defaultValue=""
-                    >
-                      <option value="" disabled className="bg-navy-900 text-white/50">
-                        Select a service
-                      </option>
-                      {serviceOptions.map((opt) => (
-                        <option key={opt} value={opt} className="bg-navy-900">
-                          {opt}
-                        </option>
-                      ))}
-                    </select>
-                  </div>
-
-                  <div>
-                    <label
-                      htmlFor="website"
-                      className="block text-sm font-medium text-white/60 mb-2"
-                    >
-                      Current website (if any)
-                    </label>
-                    <input
-                      type="url"
-                      id="website"
-                      name="website"
-                      className="w-full px-4 py-3 rounded-xl bg-white/[0.04] border border-white/[0.08] text-white placeholder-white/25 text-sm focus:outline-none focus:ring-2 focus:ring-signal-500/40 focus:border-signal-500/30 transition-all"
-                      placeholder="https://"
-                    />
-                  </div>
-
-                  <div>
-                    <label
-                      htmlFor="message"
-                      className="block text-sm font-medium text-white/60 mb-2"
-                    >
-                      Tell us about your project *
-                    </label>
-                    <textarea
-                      id="message"
-                      name="message"
-                      required
-                      rows={5}
-                      className="w-full px-4 py-3 rounded-xl bg-white/[0.04] border border-white/[0.08] text-white placeholder-white/25 text-sm focus:outline-none focus:ring-2 focus:ring-signal-500/40 focus:border-signal-500/30 transition-all resize-none"
-                      placeholder="What do you need? What's your timeline? Any inspiration or references?"
-                    />
-                  </div>
-
-                  <button
-                    type="submit"
-                    className="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-signal-500 text-white font-semibold hover:bg-signal-400 transition-all duration-300 hover:shadow-lg hover:shadow-signal-500/20"
-                  >
-                    Send Message
-                  </button>
-                </form>
-              )}
+              <ContactForm />
             </div>
 
             {/* Sidebar info */}
@@ -288,6 +183,12 @@ export default function Contact() {
           </div>
         </div>
       </section>
+
+      {/* LocalBusiness JSON-LD */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJsonLd) }}
+      />
     </>
   );
 }

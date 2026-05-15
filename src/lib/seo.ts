@@ -1,4 +1,4 @@
-const SITE_URL = "https://localsignalwebsites.studio";
+const SITE_URL = "https://www.localsignalwebsites.studio";
 
 export function absoluteUrl(path: string): string {
   return `${SITE_URL}${path}`;

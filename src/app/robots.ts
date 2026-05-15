@@ -8,6 +8,6 @@ export default function robots(): MetadataRoute.Robots {
         allow: "/",
       },
     ],
-    sitemap: "https://localsignalwebsites.studio/sitemap.xml",
+    sitemap: "https://www.localsignalwebsites.studio/sitemap.xml",
   };
 }

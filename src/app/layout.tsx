@@ -37,8 +37,15 @@ export const metadata: Metadata = {
       },
     ],
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Local Signal Websites — Custom Sites for Artists, Creators & Small Business",
+    description: siteConfig.description,
+    images: [absoluteUrl("/images/og-image.jpg")],
+  },
   icons: {
     icon: [
+      { url: "/favicon.ico", sizes: "any" },
       { url: "/images/favicon-32.png", sizes: "32x32", type: "image/png" },
       { url: "/images/favicon-16.png", sizes: "16x16", type: "image/png" },
     ],
@@ -50,6 +57,26 @@ export const metadata: Metadata = {
   },
 };
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "Local Signal Websites",
+  url: siteConfig.url,
+  logo: absoluteUrl("/images/logo.png"),
+  description: siteConfig.description,
+  areaServed: "US",
+  sameAs: [
+    "https://www.facebook.com/profile.php?id=61576498498498",
+    "https://www.instagram.com/localsignalwebsites",
+  ],
+  contactPoint: {
+    "@type": "ContactPoint",
+    contactType: "sales",
+    areaServed: "US",
+    availableLanguage: "English",
+  },
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -58,9 +85,19 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col bg-navy-950 text-white font-sans">
+        <a
+          href="#main-content"
+          className="skip-to-content"
+        >
+          Skip to main content
+        </a>
         <Navigation />
-        <main className="flex-1 pt-16">{children}</main>
+        <main id="main-content" className="flex-1 pt-16">{children}</main>
         <Footer />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
       </body>
     </html>
   );

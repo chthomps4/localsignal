@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { absoluteUrl } from "@/lib/seo";
+import FaqAccordion from "@/components/FaqAccordion";
 
 export const metadata: Metadata = {
   title: "Services",
@@ -14,6 +15,20 @@ export const metadata: Metadata = {
     url: absoluteUrl("/services"),
     siteName: "Local Signal Websites",
     type: "website",
+    images: [
+      {
+        url: absoluteUrl("/images/og-image.jpg"),
+        width: 1200,
+        height: 630,
+        alt: "Local Signal Websites — Services",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Services | Local Signal Websites",
+    description: "Custom website design and development for artists, creators, and small businesses.",
+    images: [absoluteUrl("/images/og-image.jpg")],
   },
 };
 
@@ -123,11 +138,25 @@ const faqs = [
   },
 ];
 
+/* JSON-LD for FAQ page */
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((faq) => ({
+    "@type": "Question",
+    name: faq.q,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: faq.a,
+    },
+  })),
+};
+
 export default function Services() {
   return (
     <>
       {/* Hero */}
-      <section className="pt-24 pb-16 md:pt-32 md:pb-20 relative">
+      <section className="pt-24 pb-12 md:pt-32 md:pb-16 relative">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_40%_at_50%_0%,_var(--color-signal-900)/20,_transparent)]" />
         <div className="relative max-w-6xl mx-auto px-6">
           <p className="text-signal-400 text-sm font-semibold tracking-wider uppercase mb-4">
@@ -144,7 +173,7 @@ export default function Services() {
       </section>
 
       {/* Tiers */}
-      <section className="pb-28 md:pb-36">
+      <section className="pb-20 md:pb-28">
         <div className="max-w-6xl mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
             {tiers.map((tier) => (
@@ -224,7 +253,7 @@ export default function Services() {
       </section>
 
       {/* Add-ons */}
-      <section className="py-24 md:py-32 relative">
+      <section className="py-20 md:py-28 relative">
         <div className="absolute inset-0 bg-gradient-to-b from-navy-900/60 via-navy-900/40 to-transparent" />
         <div className="relative max-w-6xl mx-auto px-6">
           <div className="text-center mb-16">
@@ -255,8 +284,8 @@ export default function Services() {
         </div>
       </section>
 
-      {/* FAQ */}
-      <section className="py-24 md:py-32">
+      {/* FAQ — interactive accordion */}
+      <section className="py-20 md:py-28">
         <div className="max-w-3xl mx-auto px-6">
           <div className="text-center mb-16">
             <p className="text-signal-400 text-sm font-semibold tracking-wider uppercase mb-3">
@@ -267,22 +296,12 @@ export default function Services() {
             </h2>
           </div>
 
-          <div className="space-y-6">
-            {faqs.map((faq) => (
-              <div
-                key={faq.q}
-                className="pb-6 border-b border-white/[0.05]"
-              >
-                <h3 className="font-semibold mb-2">{faq.q}</h3>
-                <p className="text-white/40 text-sm leading-relaxed">{faq.a}</p>
-              </div>
-            ))}
-          </div>
+          <FaqAccordion faqs={faqs} />
         </div>
       </section>
 
       {/* CTA */}
-      <section className="py-24 md:py-32 relative">
+      <section className="py-20 md:py-28 relative">
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-signal-950/15 to-transparent" />
         <div className="relative max-w-2xl mx-auto px-6 text-center">
           <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
@@ -300,6 +319,12 @@ export default function Services() {
           </Link>
         </div>
       </section>
+
+      {/* FAQ JSON-LD */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
     </>
   );
 }

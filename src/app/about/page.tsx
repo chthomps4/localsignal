@@ -14,6 +14,20 @@ export const metadata: Metadata = {
     url: absoluteUrl("/about"),
     siteName: "Local Signal Websites",
     type: "website",
+    images: [
+      {
+        url: absoluteUrl("/images/og-image.jpg"),
+        width: 1200,
+        height: 630,
+        alt: "Local Signal Websites — About",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "About | Local Signal Websites",
+    description: "A web design studio in North Carolina building custom sites for artists, creators, and small businesses.",
+    images: [absoluteUrl("/images/og-image.jpg")],
   },
 };
 
@@ -158,7 +172,7 @@ export default function About() {
       </section>
 
       {/* Values */}
-      <section className="py-24 md:py-32 relative">
+      <section className="py-20 md:py-28 relative">
         <div className="absolute inset-0 bg-gradient-to-b from-navy-900/60 via-navy-900/40 to-transparent" />
         <div className="relative max-w-6xl mx-auto px-6">
           <div className="text-center mb-16">
@@ -187,7 +201,7 @@ export default function About() {
       </section>
 
       {/* Tech stack */}
-      <section className="py-24 md:py-32">
+      <section className="py-20 md:py-28">
         <div className="max-w-6xl mx-auto px-6">
           <div className="text-center mb-16">
             <p className="text-signal-400 text-sm font-semibold tracking-wider uppercase mb-3">
@@ -222,7 +236,7 @@ export default function About() {
       </section>
 
       {/* CTA */}
-      <section className="py-24 md:py-32 relative">
+      <section className="py-20 md:py-28 relative">
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-signal-950/15 to-transparent" />
         <div className="relative max-w-2xl mx-auto px-6 text-center">
           <h2 className="text-3xl md:text-4xl font-bold tracking-tight">

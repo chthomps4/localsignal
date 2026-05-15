@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 /* ─── Data ────────────────────────────────────────────────────────────── */
@@ -168,8 +169,8 @@ export default function Home() {
           }}
         />
 
-        {/* Signal pulse rings */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] opacity-[0.04]">
+        {/* Signal pulse rings — boosted visibility */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] opacity-[0.10]">
           <div className="absolute inset-0 rounded-full border border-signal-400 animate-[ping_4s_ease-out_infinite]" />
           <div className="absolute inset-[15%] rounded-full border border-signal-400 animate-[ping_4s_ease-out_1s_infinite]" />
           <div className="absolute inset-[30%] rounded-full border border-signal-400 animate-[ping_4s_ease-out_2s_infinite]" />
@@ -226,7 +227,7 @@ export default function Home() {
           </div>
 
           {/* Tech strip */}
-          <div className="mt-24 pt-8 border-t border-white/[0.04]">
+          <div className="mt-20 pt-8 border-t border-white/[0.04]">
             <p className="text-white/20 text-xs font-medium tracking-wider uppercase mb-5">
               Built with
             </p>
@@ -247,7 +248,7 @@ export default function Home() {
       </section>
 
       {/* ── Services ────────────────────────────────────────────────── */}
-      <section id="services" className="py-28 md:py-36 relative">
+      <section id="services" className="py-20 md:py-28 relative">
         <div className="absolute inset-0 bg-gradient-to-b from-navy-900/60 via-navy-900/40 to-transparent" />
         <div className="relative max-w-6xl mx-auto px-6">
           <div className="max-w-2xl mb-16">
@@ -331,9 +332,9 @@ export default function Home() {
       </section>
 
       {/* ── Why us ──────────────────────────────────────────────────── */}
-      <section className="py-28 md:py-36">
+      <section className="py-20 md:py-28">
         <div className="max-w-6xl mx-auto px-6">
-          <div className="text-center mb-20">
+          <div className="text-center mb-16">
             <p className="text-signal-400 text-sm font-semibold tracking-wider uppercase mb-3">
               Why Local Signal
             </p>
@@ -366,10 +367,10 @@ export default function Home() {
       </section>
 
       {/* ── Process ─────────────────────────────────────────────────── */}
-      <section className="py-28 md:py-36 relative">
+      <section className="py-20 md:py-28 relative">
         <div className="absolute inset-0 bg-gradient-to-b from-navy-900/60 via-navy-900/40 to-transparent" />
         <div className="relative max-w-6xl mx-auto px-6">
-          <div className="text-center mb-20">
+          <div className="text-center mb-16">
             <p className="text-signal-400 text-sm font-semibold tracking-wider uppercase mb-3">
               Our Process
             </p>
@@ -399,8 +400,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── Featured Work ───────────────────────────────────────────── */}
-      <section className="py-28 md:py-36">
+      {/* ── Featured Work — real screenshot ──────────────────────────── */}
+      <section className="py-20 md:py-28">
         <div className="max-w-6xl mx-auto px-6">
           <div className="text-center mb-16">
             <p className="text-signal-400 text-sm font-semibold tracking-wider uppercase mb-3">
@@ -432,17 +433,15 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Site preview */}
-            <div className="h-64 sm:h-80 bg-gradient-to-br from-[#0f1a2e] via-[#1a1a2e] to-[#0a0a1a] flex items-center justify-center relative overflow-hidden">
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,_rgba(30,40,80,0.4),_transparent_70%)]" />
-              <div className="relative text-center">
-                <div className="text-6xl font-bold bg-gradient-to-r from-white/20 to-white/5 bg-clip-text text-transparent group-hover:from-white/30 group-hover:to-white/10 transition-all duration-500">
-                  PH
-                </div>
-                <div className="text-white/15 text-sm mt-3 font-medium group-hover:text-white/25 transition-colors">
-                  parallaxhearts.org
-                </div>
-              </div>
+            {/* Real site screenshot */}
+            <div className="relative overflow-hidden">
+              <Image
+                src="/images/ph-screenshot.jpg"
+                alt="Parallax Hearts website — Songs, story, and the town that holds them"
+                width={1440}
+                height={810}
+                className="w-full h-auto group-hover:scale-[1.02] transition-transform duration-700"
+              />
             </div>
 
             <div className="p-8 md:p-10">
@@ -496,7 +495,7 @@ export default function Home() {
       </section>
 
       {/* ── CTA ─────────────────────────────────────────────────────── */}
-      <section className="py-28 md:py-36 relative">
+      <section className="py-20 md:py-28 relative">
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-signal-950/20 to-transparent" />
         <div className="relative max-w-3xl mx-auto px-6 text-center">
           <div className="w-16 h-16 rounded-2xl bg-signal-500/10 border border-signal-500/20 flex items-center justify-center mx-auto mb-8">

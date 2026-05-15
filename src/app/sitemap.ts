@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 
-const BASE_URL = "https://localsignalwebsites.studio";
+const BASE_URL = "https://www.localsignalwebsites.studio";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const pages = [
