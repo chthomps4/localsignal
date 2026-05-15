@@ -1,0 +1,49 @@
+@import "tailwindcss";
+
+@theme {
+  --color-navy-50: #f0f4f9;
+  --color-navy-100: #dce4f0;
+  --color-navy-200: #b9c9e0;
+  --color-navy-300: #8ba6cb;
+  --color-navy-400: #5e82b3;
+  --color-navy-500: #3d6199;
+  --color-navy-600: #2e4d7d;
+  --color-navy-700: #263e65;
+  --color-navy-800: #1c2e4a;
+  --color-navy-900: #0f1a2e;
+  --color-navy-950: #080e1a;
+
+  --color-signal-50: #ecfaff;
+  --color-signal-100: #d4f3ff;
+  --color-signal-200: #b3eaff;
+  --color-signal-300: #7fddff;
+  --color-signal-400: #43c6ff;
+  --color-signal-500: #19a8ff;
+  --color-signal-600: #0088f5;
+  --color-signal-700: #006dd4;
+  --color-signal-800: #025bab;
+  --color-signal-900: #084d87;
+  --color-signal-950: #062f53;
+
+  --color-warm-50: #faf8f5;
+  --color-warm-100: #f3efe8;
+  --color-warm-200: #e5ddd0;
+  --color-warm-300: #d4c5b0;
+  --color-warm-400: #c0a88c;
+  --color-warm-500: #b19373;
+  --color-warm-600: #a48064;
+  --color-warm-700: #896a54;
+  --color-warm-800: #705748;
+  --color-warm-900: #5c493d;
+
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-display: "Inter", ui-sans-serif, system-ui, -apple-system, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+}
