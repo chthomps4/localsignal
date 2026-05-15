@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 export default function Footer() {
@@ -10,9 +11,13 @@ export default function Footer() {
           {/* Brand */}
           <div className="md:col-span-2">
             <div className="flex items-center gap-2.5 mb-4">
-              <div className="w-8 h-8 rounded-lg bg-signal-500 flex items-center justify-center text-white font-bold text-sm">
-                LS
-              </div>
+              <Image
+                src="/images/logo.png"
+                alt="Local Signal Websites"
+                width={36}
+                height={36}
+                className="rounded-full"
+              />
               <span className="text-white font-semibold tracking-tight text-lg">
                 Local Signal Websites
               </span>

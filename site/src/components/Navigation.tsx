@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
@@ -21,9 +22,14 @@ export default function Navigation() {
       <nav className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2.5 group">
-          <div className="w-8 h-8 rounded-lg bg-signal-500 flex items-center justify-center text-white font-bold text-sm transition-transform group-hover:scale-105">
-            LS
-          </div>
+          <Image
+            src="/images/logo.png"
+            alt="Local Signal Websites"
+            width={36}
+            height={36}
+            className="rounded-full transition-transform group-hover:scale-105"
+            priority
+          />
           <span className="text-white font-semibold tracking-tight text-lg hidden sm:block">
             Local Signal
           </span>
