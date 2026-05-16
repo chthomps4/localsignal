@@ -35,6 +35,8 @@ const projects = [
   {
     title: "Parallax Hearts",
     url: "https://parallaxhearts.org",
+    image: "/images/ph-portfolio.jpg",
+    imageAlt: "Parallax Hearts website — Songs, story, and the town that holds them",
     category: "Music · Story World · E-Commerce",
     description:
       "A full cinematic web experience for an independent music and graphic novel project. 20+ pages connecting an album, a story world set in the fictional town of Vallen, a graphic novel, a support shop, and a PHYLAX sub-world — all with sub-second load times and full SEO.",
@@ -47,6 +49,25 @@ const projects = [
       { label: "TTFB", value: "12ms" },
       { label: "Pages", value: "20+" },
       { label: "FCP", value: "0.7s" },
+    ],
+  },
+  {
+    title: "Ecusta Land",
+    url: "https://ecustaland.org",
+    image: "/images/ecustaland-portfolio.jpg",
+    imageAlt: "Ecusta Land website — Sunflower Power for Ecusta, Brevard / Pisgah Forest, NC",
+    category: "Community · Environmental · Advocacy",
+    description:
+      "A public-facing advocacy site for the vision to restore the former Ecusta paper mill site in Brevard, NC. Cherokee history, the Ecusta Tohi wellness plan, environmental research, a vision gallery, and a community petition — all designed to move people from awareness to action.",
+    challenge:
+      "The project needed to communicate a complex, multi-layered vision — Cherokee heritage, phytoremediation science, wellness architecture, and community advocacy — without overwhelming visitors or losing emotional impact.",
+    result:
+      "8 pages with full SEO, optimized webp images, Cherokee history deep-dive, interactive Tohi plan, embedded petition, and a design that feels grounded and serious — not like a template.",
+    stack: ["Next.js 16", "React 19", "TypeScript", "Tailwind CSS", "Vercel"],
+    stats: [
+      { label: "TTFB", value: "11ms" },
+      { label: "Pages", value: "8" },
+      { label: "Images", value: "100% webp" },
     ],
   },
 ];
@@ -130,8 +151,8 @@ export default function Portfolio() {
                 {/* Real screenshot */}
                 <div className="relative overflow-hidden">
                   <Image
-                    src="/images/ph-portfolio.jpg"
-                    alt="Parallax Hearts website — Songs, story, and the town that holds them"
+                    src={project.image}
+                    alt={project.imageAlt}
                     width={1200}
                     height={675}
                     className="w-full h-auto group-hover:scale-[1.02] transition-transform duration-700"

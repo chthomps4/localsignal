@@ -483,6 +483,78 @@ export default function Home() {
             </div>
           </a>
 
+          {/* Ecustaland showcase */}
+          <a
+            href="https://ecustaland.org"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group block max-w-4xl mx-auto rounded-2xl overflow-hidden bg-white/[0.02] border border-white/[0.05] hover:border-signal-500/25 transition-all duration-500 hover:shadow-2xl hover:shadow-signal-500/[0.05] mt-10"
+          >
+            {/* Browser chrome mockup */}
+            <div className="bg-white/[0.03] border-b border-white/[0.05] px-5 py-3 flex items-center gap-3">
+              <div className="flex gap-1.5">
+                <div className="w-3 h-3 rounded-full bg-white/10" />
+                <div className="w-3 h-3 rounded-full bg-white/10" />
+                <div className="w-3 h-3 rounded-full bg-white/10" />
+              </div>
+              <div className="flex-1 mx-4">
+                <div className="bg-white/[0.04] rounded-md px-4 py-1.5 text-white/25 text-xs font-mono max-w-sm">
+                  ecustaland.org
+                </div>
+              </div>
+            </div>
+
+            {/* Real site screenshot */}
+            <div className="relative overflow-hidden">
+              <Image
+                src="/images/ecustaland-portfolio.jpg"
+                alt="Ecusta Land website — Sunflower Power for Ecusta, Brevard NC"
+                width={1440}
+                height={810}
+                className="w-full h-auto group-hover:scale-[1.02] transition-transform duration-700"
+              />
+            </div>
+
+            <div className="p-8 md:p-10">
+              <div className="flex flex-wrap gap-2 mb-4">
+                {["Next.js", "TypeScript", "Tailwind CSS", "Vercel"].map((tag) => (
+                  <span
+                    key={tag}
+                    className="px-2.5 py-1 rounded-md bg-signal-500/10 text-signal-400 text-[11px] font-medium"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+              <h3 className="text-2xl font-bold group-hover:text-signal-300 transition-colors">
+                Ecusta Land
+              </h3>
+              <p className="text-white/30 text-xs font-medium uppercase tracking-wider mt-1">
+                Community · Environmental · Advocacy
+              </p>
+              <p className="text-white/45 leading-relaxed mt-4">
+                A public advocacy site for the vision to restore the former Ecusta
+                paper mill in Brevard, NC. Cherokee history, environmental research,
+                the Ecusta Tohi wellness plan, and a community petition — all designed
+                to move people from awareness to action.
+              </p>
+              <div className="mt-6 flex items-center gap-6 text-sm">
+                <div>
+                  <span className="text-signal-400 font-bold">11ms</span>
+                  <span className="text-white/30 ml-1.5">TTFB</span>
+                </div>
+                <div>
+                  <span className="text-signal-400 font-bold">8</span>
+                  <span className="text-white/30 ml-1.5">Pages</span>
+                </div>
+                <div>
+                  <span className="text-signal-400 font-bold">100%</span>
+                  <span className="text-white/30 ml-1.5">WebP Images</span>
+                </div>
+              </div>
+            </div>
+          </a>
+
           <div className="text-center mt-12">
             <Link
               href="/portfolio"
