@@ -5,11 +5,11 @@ import ContactForm from "@/components/ContactForm";
 export const metadata: Metadata = {
   title: "Contact",
   description:
-    "Get in touch with Local Signal Websites. Tell us about your project and we'll reply within 24 hours.",
+    "Start a Local Signal Websites review. Tell us where your site is now and what needs to happen next.",
   alternates: { canonical: absoluteUrl("/contact") },
   openGraph: {
     title: "Contact | Local Signal Websites",
-    description: "Get in touch with Local Signal Websites. Tell us about your project.",
+    description: "Start a Local Signal Websites review and get a practical next step.",
     url: absoluteUrl("/contact"),
     siteName: "Local Signal Websites",
     type: "website",
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Contact | Local Signal Websites",
-    description: "Get in touch with Local Signal Websites. Tell us about your project.",
+    description: "Start a Local Signal Websites review and get a practical next step.",
     images: [absoluteUrl("/images/og-image.jpg")],
   },
 };
@@ -64,12 +64,13 @@ export default function Contact() {
             Contact
           </p>
           <h1 className="text-4xl md:text-6xl font-bold tracking-tight leading-tight max-w-3xl">
-            Let&apos;s build something great.
+            Start your website review.
           </h1>
           <p className="mt-6 text-white/45 text-lg leading-relaxed max-w-2xl">
-            Tell us about your project. We&apos;ll reply within 24 hours
-            with honest feedback and a clear next step — no sales pitch,
-            no pressure.
+            Tell us where your website is now, what is not working, and what
+            you need it to do next. We&apos;ll reply with practical feedback, a
+            clear next step, and no pressure to start before the scope makes
+            sense.
           </p>
         </div>
       </section>
@@ -91,27 +92,27 @@ export default function Contact() {
                   {[
                     {
                       step: "1",
-                      title: "We read your message",
+                      title: "We review the site path",
                       description:
-                        "No auto-reply bots. A real person reviews your project details.",
+                        "A real person reviews the site, offer, and next-step context you send.",
                     },
                     {
                       step: "2",
                       title: "We reply within 24 hours",
                       description:
-                        "With honest feedback, initial ideas, and a rough scope estimate.",
+                        "You get honest feedback, initial ideas, and a rough scope estimate.",
                     },
                     {
                       step: "3",
-                      title: "We schedule a call (optional)",
+                      title: "We schedule a call if useful",
                       description:
-                        "If it makes sense, we'll hop on a quick call to nail down details.",
+                        "If the project needs more context, we use a short call to confirm details.",
                     },
                     {
                       step: "4",
-                      title: "You get a clear proposal",
+                      title: "You choose the next step",
                       description:
-                        "Exact scope, price, timeline, and deliverables — before any work starts.",
+                        "Scope, price, timeline, and deliverables are clear before any work starts.",
                     },
                   ].map((item) => (
                     <div key={item.step} className="flex gap-4">
@@ -130,18 +131,15 @@ export default function Contact() {
               </div>
 
               <div className="rounded-2xl bg-white/[0.02] border border-white/[0.05] p-8">
-                <h3 className="font-bold mb-4">Other ways to reach us</h3>
+                <h3 className="font-bold mb-4">Contact path</h3>
                 <div className="space-y-4">
                   <div>
                     <p className="text-white/25 text-xs font-medium uppercase tracking-wider mb-1">
-                      Email
+                      Preferred
                     </p>
-                    <a
-                      href="mailto:chad@parallaxhearts.org"
-                      className="text-signal-400 hover:text-signal-300 text-sm transition-colors"
-                    >
-                      chad@parallaxhearts.org
-                    </a>
+                    <p className="text-white/50 text-sm">
+                      Use the project form so the review starts with the right site, goal, and context.
+                    </p>
                   </div>
                   <div>
                     <p className="text-white/25 text-xs font-medium uppercase tracking-wider mb-1">
