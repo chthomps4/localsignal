@@ -1,6 +1,12 @@
 import Link from "next/link";
 import type { Metadata } from "next";
-import { absoluteUrl } from "@/lib/seo";
+import JsonLd from "@/components/JsonLd";
+import {
+  absoluteUrl,
+  breadcrumbSchema,
+  faqPageSchema,
+  serviceSchema,
+} from "@/lib/seo";
 import FaqAccordion from "@/components/FaqAccordion";
 
 export const metadata: Metadata = {
@@ -138,19 +144,14 @@ const faqs = [
   },
 ];
 
-/* JSON-LD for FAQ page */
-const faqJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: faqs.map((faq) => ({
-    "@type": "Question",
-    name: faq.q,
-    acceptedAnswer: {
-      "@type": "Answer",
-      text: faq.a,
-    },
-  })),
-};
+const servicesJsonLd = [
+  breadcrumbSchema([
+    { name: "Home", path: "/" },
+    { name: "Services", path: "/services" },
+  ]),
+  serviceSchema(),
+  faqPageSchema(faqs),
+];
 
 export default function Services() {
   return (
@@ -320,11 +321,7 @@ export default function Services() {
         </div>
       </section>
 
-      {/* FAQ JSON-LD */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
-      />
+      <JsonLd data={servicesJsonLd} />
     </>
   );
 }

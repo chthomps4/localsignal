@@ -1,7 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
-import { absoluteUrl } from "@/lib/seo";
+import JsonLd from "@/components/JsonLd";
+import { absoluteUrl, breadcrumbSchema } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "Portfolio",
@@ -99,6 +100,30 @@ const comingSoon = [
         <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
       </svg>
     ),
+  },
+];
+
+const portfolioJsonLd = [
+  breadcrumbSchema([
+    { name: "Home", path: "/" },
+    { name: "Portfolio", path: "/portfolio" },
+  ]),
+  {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: "Local Signal Websites portfolio",
+    url: absoluteUrl("/portfolio"),
+    itemListElement: projects.map((project, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      item: {
+        "@type": "CreativeWork",
+        name: project.title,
+        url: project.url,
+        image: absoluteUrl(project.image),
+        description: project.description,
+      },
+    })),
   },
 ];
 
@@ -279,6 +304,7 @@ export default function Portfolio() {
           </Link>
         </div>
       </section>
+      <JsonLd data={portfolioJsonLd} />
     </>
   );
 }

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { absoluteUrl } from "@/lib/seo";
+import JsonLd from "@/components/JsonLd";
+import { absoluteUrl, breadcrumbSchema, localBusinessSchema } from "@/lib/seo";
 import ContactForm from "@/components/ContactForm";
 
 export const metadata: Metadata = {
@@ -30,28 +31,13 @@ export const metadata: Metadata = {
   },
 };
 
-const localBusinessJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "LocalBusiness",
-  name: "Local Signal Websites",
-  url: "https://www.localsignalwebsites.studio",
-  description:
-    "Custom website design and development for artists, creators, and small businesses.",
-  areaServed: {
-    "@type": "Country",
-    name: "United States",
-  },
-  address: {
-    "@type": "PostalAddress",
-    addressRegion: "NC",
-    addressCountry: "US",
-  },
-  priceRange: "$$",
-  sameAs: [
-    "https://www.facebook.com/profile.php?id=61576498498498",
-    "https://www.instagram.com/localsignalwebsites",
-  ],
-};
+const contactJsonLd = [
+  breadcrumbSchema([
+    { name: "Home", path: "/" },
+    { name: "Contact", path: "/contact" },
+  ]),
+  localBusinessSchema(),
+];
 
 export default function Contact() {
   return (
@@ -182,11 +168,7 @@ export default function Contact() {
         </div>
       </section>
 
-      {/* LocalBusiness JSON-LD */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJsonLd) }}
-      />
+      <JsonLd data={contactJsonLd} />
     </>
   );
 }
