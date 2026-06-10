@@ -2,7 +2,13 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
-import { absoluteUrl, siteConfig } from "@/lib/seo";
+import JsonLd from "@/components/JsonLd";
+import {
+  absoluteUrl,
+  organizationSchema,
+  siteConfig,
+  websiteSchema,
+} from "@/lib/seo";
 import "./globals.css";
 
 const inter = Inter({
@@ -57,26 +63,6 @@ export const metadata: Metadata = {
   },
 };
 
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  name: "Local Signal Websites",
-  url: siteConfig.url,
-  logo: absoluteUrl("/images/logo.png"),
-  description: siteConfig.description,
-  areaServed: "US",
-  sameAs: [
-    "https://www.facebook.com/profile.php?id=61576498498498",
-    "https://www.instagram.com/localsignalwebsites",
-  ],
-  contactPoint: {
-    "@type": "ContactPoint",
-    contactType: "sales",
-    areaServed: "US",
-    availableLanguage: "English",
-  },
-};
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -94,10 +80,7 @@ export default function RootLayout({
         <Navigation />
         <main id="main-content" className="flex-1 pt-16">{children}</main>
         <Footer />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
+        <JsonLd data={[organizationSchema(), websiteSchema()]} />
       </body>
     </html>
   );

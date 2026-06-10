@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
-import { absoluteUrl } from "@/lib/seo";
+import JsonLd from "@/components/JsonLd";
+import { absoluteUrl, breadcrumbSchema } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "About",
@@ -70,6 +71,21 @@ const techStack = [
   {
     category: "Tools",
     tools: ["GitHub", "Figma", "VS Code", "AI-augmented workflows"],
+  },
+];
+
+const aboutJsonLd = [
+  breadcrumbSchema([
+    { name: "Home", path: "/" },
+    { name: "About", path: "/about" },
+  ]),
+  {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    name: "About Local Signal Websites",
+    url: absoluteUrl("/about"),
+    description:
+      "Local Signal Websites is a web design studio in North Carolina building custom sites for artists, creators, and small businesses.",
   },
 ];
 
@@ -254,6 +270,7 @@ export default function About() {
           </Link>
         </div>
       </section>
+      <JsonLd data={aboutJsonLd} />
     </>
   );
 }
