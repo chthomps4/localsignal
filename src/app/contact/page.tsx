@@ -129,6 +129,17 @@ export default function Contact() {
                   </div>
                   <div>
                     <p className="text-white/25 text-xs font-medium uppercase tracking-wider mb-1">
+                      Email
+                    </p>
+                    <a
+                      href="mailto:chad@lswdesigns.info"
+                      className="text-signal-400 hover:text-signal-300 text-sm transition-colors"
+                    >
+                      chad@lswdesigns.info
+                    </a>
+                  </div>
+                  <div>
+                    <p className="text-white/25 text-xs font-medium uppercase tracking-wider mb-1">
                       Social
                     </p>
                     <div className="flex gap-4">

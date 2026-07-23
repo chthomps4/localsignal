@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "audit:seo": "node scripts/site-audit.mjs",
+    "audit:live": "SITE_URL=https://www.localsignalwebsites.studio LIVE=1 node scripts/site-audit.mjs"
   },
   "dependencies": {
     "next": "16.2.6",

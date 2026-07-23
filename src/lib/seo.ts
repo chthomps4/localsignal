@@ -29,6 +29,7 @@ export function organizationSchema() {
     contactPoint: {
       "@type": "ContactPoint",
       contactType: "sales",
+      email: "chad@lswdesigns.info",
       areaServed: "US",
       availableLanguage: "English",
     },
@@ -91,7 +92,7 @@ export function serviceSchema() {
       "Starter website",
       "Business website",
       "Custom web application",
-      "Website maintenance",
+      "Website care plans",
       "SEO audit and strategy",
     ],
   };

@@ -1,36 +1,29 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Local Signal Websites
 
-## Getting Started
+Source for [localsignalwebsites.studio](https://www.localsignalwebsites.studio) — the Local Signal Websites studio site. Next.js App Router, React, Tailwind CSS v4, deployed on Vercel. Package manager is Bun.
 
-First, run the development server:
+## Commands
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+bun install        # install dependencies
+bun run dev        # local dev server
+bun run build      # production build
+bun run start      # serve the production build
+bun run lint       # eslint
+bun run audit:seo  # SEO/metadata contract checks against a running server (default http://127.0.0.1:3000)
+bun run audit:live # same contract checks against production
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Structure
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- `src/app/` — App Router pages, `robots.ts`, `sitemap.ts`, `llms.txt/route.ts`
+- `src/components/` — Navigation, Footer, ContactForm (Formspree), FaqAccordion, Analytics (Vercel Web Analytics + lead events), JsonLd
+- `src/lib/` — `seo.ts` (structured data builders), `attribution.ts` (privacy-clean campaign attribution)
+- `next.config.ts` — security headers (CSP, HSTS, frame/content-type protections)
+- `scripts/` — dependency-free SEO and live-site audit scripts used by CI
+- `.github/workflows/` — PR gate (lint, build, SEO audit) and daily live-site audit
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Operating notes
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Lead flow: Formspree form on `/contact` with session-level campaign attribution attached at submit; fallback email is published on the site. Vercel Web Analytics records pageviews plus Contact CTA / Lead Form Started / Submitted / Success events (enable Web Analytics for the project in the Vercel dashboard).
+- The care-plan pricing and the FAQ text feed the visible page and the FAQPage structured data from the same arrays in `src/app/services/page.tsx` — edit once, both update.

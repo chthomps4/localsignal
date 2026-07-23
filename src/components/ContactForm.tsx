@@ -1,11 +1,13 @@
 "use client";
 
-import { useState, type FormEvent } from "react";
+import { useRef, useState, type FormEvent } from "react";
+import { inquiryPage, readAttribution, track } from "@/lib/attribution";
 
 const serviceOptions = [
   "Starter Site ($800+)",
   "Business Site ($2,000+)",
   "Custom Build",
+  "Website care plan",
   "Not sure yet",
 ];
 
@@ -14,6 +16,13 @@ export default function ContactForm() {
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
+  const startedRef = useRef(false);
+
+  function handleFormStart() {
+    if (startedRef.current) return;
+    startedRef.current = true;
+    track("Lead Form Started", { path: window.location.pathname });
+  }
 
   function validateField(name: string, value: string): string {
     if (name === "name" && !value.trim()) return "Name is required";
@@ -54,23 +63,32 @@ export default function ContactForm() {
     }
 
     setSubmitting(true);
+    track("Lead Form Submitted", {
+      path: window.location.pathname,
+      service: data.service || "Not selected",
+    });
 
     try {
-      // TODO: Replace with your Formspree form ID from https://formspree.io
-      // Create a free account → new form → copy the form ID
+      const payload = {
+        ...data,
+        ...readAttribution(),
+        inquiry_page: inquiryPage(),
+      };
+
       const res = await fetch("https://formspree.io/f/xpwdqbvz", {
         method: "POST",
         headers: { "Content-Type": "application/json", Accept: "application/json" },
-        body: JSON.stringify(data),
+        body: JSON.stringify(payload),
       });
 
       if (res.ok) {
         setSubmitted(true);
+        track("Lead Form Success", { path: window.location.pathname });
       } else {
-        setError("Something went wrong. Please try again or email us directly.");
+        setError("submit-failed");
       }
     } catch {
-      setError("Network error. Please check your connection and try again.");
+      setError("network");
     } finally {
       setSubmitting(false);
     }
@@ -107,7 +125,7 @@ export default function ContactForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6" noValidate>
+    <form onSubmit={handleSubmit} onInput={handleFormStart} className="space-y-6" noValidate>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
         <div>
           <label htmlFor="name" className="block text-sm font-medium text-white/60 mb-2">
@@ -227,7 +245,13 @@ export default function ContactForm() {
 
       {error && (
         <div className="p-4 rounded-xl bg-red-500/10 border border-red-500/20 text-red-300 text-sm">
-          {error}
+          {error === "network"
+            ? "Network error. Please check your connection and try again, or email "
+            : "Something went wrong. Please try again, or email "}
+          <a href="mailto:chad@lswdesigns.info" className="underline text-red-200 hover:text-white transition-colors">
+            chad@lswdesigns.info
+          </a>{" "}
+          directly.
         </div>
       )}
 
