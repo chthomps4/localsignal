@@ -86,6 +86,24 @@ export default function Footer() {
                   Instagram
                 </a>
               </li>
+              <li>
+                <a
+                  href="mailto:chad@lswdesigns.info"
+                  className="text-white/50 hover:text-white text-sm transition-colors"
+                >
+                  chad@lswdesigns.info
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://www.signalworkshop.studio"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-white/50 hover:text-white text-sm transition-colors"
+                >
+                  Signal Workshop
+                </a>
+              </li>
             </ul>
           </div>
         </div>

@@ -73,25 +73,20 @@ const projects = [
   },
 ];
 
+const moreProjects = [
+  {
+    title: "Al Brothers LLC",
+    url: "https://al-brothers.com",
+    description: "Contractor website with service pages, local positioning, and scheduling.",
+  },
+  {
+    title: "Courtney Snipes",
+    url: "https://courtneysnipes.com",
+    description: "Personal brand site that makes the work, the story, and the contact path easy to find.",
+  },
+];
+
 const comingSoon = [
-  {
-    title: "Restaurant & Bar",
-    description: "Menu, reservations, location, and atmosphere — all in one fast-loading site.",
-    icon: (
-      <svg className="w-5 h-5 text-white/20" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M12 8.25v-1.5m0 1.5c-1.355 0-2.697.056-4.024.166C6.845 8.51 6 9.473 6 10.608v2.513m6-4.871c1.355 0 2.697.056 4.024.166C17.155 8.51 18 9.473 18 10.608v2.513M15 8.25v-1.5m-6 1.5v-1.5m12 9.75l-1.5.75a3.354 3.354 0 01-3 0 3.354 3.354 0 00-3 0 3.354 3.354 0 01-3 0 3.354 3.354 0 00-3 0 3.354 3.354 0 01-3 0L3 16.5m15-3.379a48.474 48.474 0 00-6-.371c-2.032 0-4.034.126-6 .371m12 0c.39.049.777.102 1.163.16 1.07.16 1.837 1.094 1.837 2.175v5.169c0 .621-.504 1.125-1.125 1.125H4.125A1.125 1.125 0 013 20.625v-5.17c0-1.08.768-2.014 1.837-2.174A47.78 47.78 0 016 13.12M12.265 3.11a.375.375 0 11-.53 0L12 2.845l.265.265zm-3 0a.375.375 0 11-.53 0L9 2.845l.265.265zm6 0a.375.375 0 11-.53 0L15 2.845l.265.265z" />
-      </svg>
-    ),
-  },
-  {
-    title: "Al Brothers",
-    description: "al-brothers.com — a custom business website built for a growing brand.",
-    icon: (
-      <svg className="w-5 h-5 text-white/20" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M9.53 16.122a3 3 0 00-5.78 1.128 2.25 2.25 0 01-2.4 2.245 4.5 4.5 0 008.4-2.245c0-.399-.078-.78-.22-1.128zm0 0a15.998 15.998 0 003.388-1.62m-5.043-.025a15.994 15.994 0 011.622-3.395m3.42 3.42a15.995 15.995 0 004.764-4.648l3.876-5.814a1.151 1.151 0 00-1.597-1.597L14.146 6.32a15.996 15.996 0 00-4.649 4.763m3.42 3.42a6.776 6.776 0 00-3.42-3.42" />
-      </svg>
-    ),
-  },
   {
     title: "Your Project",
     description: "We're building our portfolio one great project at a time. Yours could be next.",
@@ -113,16 +108,22 @@ const portfolioJsonLd = [
     "@type": "ItemList",
     name: "Local Signal Websites portfolio",
     url: absoluteUrl("/portfolio"),
-    itemListElement: projects.map((project, index) => ({
-      "@type": "ListItem",
-      position: index + 1,
-      item: {
-        "@type": "CreativeWork",
+    itemListElement: [
+      ...projects.map((project) => ({
         name: project.title,
         url: project.url,
         image: absoluteUrl(project.image),
         description: project.description,
-      },
+      })),
+      ...moreProjects.map((project) => ({
+        name: project.title,
+        url: project.url,
+        description: project.description,
+      })),
+    ].map((item, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      item: { "@type": "CreativeWork", ...item },
     })),
   },
 ];
@@ -261,12 +262,31 @@ export default function Portfolio() {
             </div>
           ))}
 
-          {/* Coming soon */}
+          {/* More projects */}
           <div className="mt-16">
             <h3 className="text-white/25 text-xs font-semibold uppercase tracking-wider mb-6">
-              More coming soon
+              More projects
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+              {moreProjects.map((item) => (
+                <a
+                  key={item.title}
+                  href={item.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group p-8 rounded-2xl bg-white/[0.02] border border-white/[0.06] hover:border-signal-500/25 flex flex-col items-center justify-center text-center min-h-[200px] transition-all duration-300"
+                >
+                  <h3 className="font-semibold text-white/70 group-hover:text-white transition-colors">
+                    {item.title}
+                  </h3>
+                  <p className="text-white/35 text-sm mt-2 max-w-[240px]">
+                    {item.description}
+                  </p>
+                  <span className="text-signal-400 text-xs font-semibold mt-4">
+                    Visit live site →
+                  </span>
+                </a>
+              ))}
               {comingSoon.map((item) => (
                 <div
                   key={item.title}

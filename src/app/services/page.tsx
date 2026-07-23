@@ -107,10 +107,51 @@ const tiers = [
 const addOns = [
   { name: "Logo & Brand Identity", price: "from $300", description: "Logo, color palette, typography, and brand guidelines." },
   { name: "Copywriting", price: "from $200", description: "Professionally written website copy — clear, compelling, and SEO-friendly." },
-  { name: "Monthly Maintenance", price: "$100/mo", description: "Updates, backups, uptime monitoring, and priority support." },
+  { name: "Website Care Plans", price: "from $150/mo", description: "Ongoing updates, monitoring, backups, and edits — see the care plans below." },
   { name: "SEO Audit & Strategy", price: "$250", description: "Full technical SEO audit with an actionable improvement plan." },
   { name: "Social Media Setup", price: "$150", description: "Branded profiles, cover images, bio copy, and linking across platforms." },
   { name: "Content Photography", price: "varies", description: "Product, headshot, or environmental photography for your site." },
+];
+
+const carePlans = [
+  {
+    name: "Care",
+    price: "$150/mo",
+    description: "Steady upkeep for a live site, priced for small businesses.",
+    includes: [
+      "Software, security, and content updates",
+      "Uptime and form-delivery checks",
+      "Backups with rollback readiness",
+      "Up to 30 minutes of edits each month",
+      "Additional edits at $150/hr, quoted first",
+      "Managed hosting add-on: $50/mo",
+    ],
+  },
+  {
+    name: "Care Plus",
+    price: "$300/mo",
+    featured: true,
+    description: "Everything in Care, with room for steady improvements.",
+    includes: [
+      "All Care coverage",
+      "Up to 2 hours of edits and improvements monthly",
+      "Priority turnaround",
+      "Additional edits at $150/hr, quoted first",
+      "Managed hosting add-on: $50/mo",
+    ],
+  },
+  {
+    name: "Care Pro",
+    price: "$600/mo",
+    description: "Everything in Care Plus, hosted and worked on every month.",
+    includes: [
+      "All Care Plus coverage",
+      "Managed hosting, domain, and DNS included",
+      "Monthly SEO cycle: Search Console review, a content update, and profile post support",
+      "Monthly report with next actions",
+      "Additional work at $150/hr, quoted first",
+    ],
+  },
 ];
 
 const faqs = [
@@ -140,7 +181,11 @@ const faqs = [
   },
   {
     q: "What if I need changes after launch?",
-    a: "Small tweaks within the first 30 days are on us. After that, we offer hourly rates or a monthly maintenance plan for ongoing changes.",
+    a: "Small tweaks within the first 30 days are on us. After that, choose a website care plan (from $150/mo) or ad-hoc work at the standard $150/hr rate, always quoted before it begins.",
+  },
+  {
+    q: "What do the website care plans include?",
+    a: "Care is $150/mo for updates, uptime and form-delivery checks, backups, and up to 30 minutes of edits. Care Plus is $300/mo and adds up to 2 hours of monthly edits with priority turnaround. Care Pro is $600/mo and adds managed hosting plus a monthly SEO cycle. Additional edits on any plan are $150/hr, quoted before work begins, and managed hosting is a $50/mo add-on on Care and Care Plus.",
   },
 ];
 
@@ -279,6 +324,71 @@ export default function Services() {
                   </span>
                 </div>
                 <p className="text-white/35 text-sm leading-relaxed">{addon.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Care plans */}
+      <section id="care" className="py-20 md:py-28">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="text-center mb-16">
+            <p className="text-signal-400 text-sm font-semibold tracking-wider uppercase mb-3">
+              Website Care Plans
+            </p>
+            <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
+              Already live? Keep it fast, secure, and current.
+            </h2>
+            <p className="mt-4 text-white/45 text-lg max-w-2xl mx-auto">
+              Ongoing care without a big retainer. Additional edits on any plan
+              bill at $150/hr, always quoted first.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            {carePlans.map((plan) => (
+              <div
+                key={plan.name}
+                className={`rounded-2xl p-8 border flex flex-col ${
+                  plan.featured
+                    ? "bg-gradient-to-b from-signal-500/[0.07] to-transparent border-signal-500/20 ring-1 ring-signal-500/10"
+                    : "bg-white/[0.015] border-white/[0.05]"
+                }`}
+              >
+                <h3 className="text-xl font-bold">{plan.name}</h3>
+                <div className="mt-2 mb-4">
+                  <span className="text-2xl font-bold text-signal-400">{plan.price}</span>
+                </div>
+                <p className="text-white/40 text-sm leading-relaxed mb-6">{plan.description}</p>
+                <ul className="space-y-2.5 flex-1">
+                  {plan.includes.map((item) => (
+                    <li key={item} className="flex items-start gap-2.5 text-sm text-white/50">
+                      <svg
+                        className={`w-4 h-4 mt-0.5 shrink-0 ${
+                          plan.featured ? "text-signal-400" : "text-white/20"
+                        }`}
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                        strokeWidth={2}
+                      >
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                      </svg>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+                <Link
+                  href="/contact"
+                  className={`block mt-8 text-center py-3 rounded-xl text-sm font-semibold transition-all duration-300 ${
+                    plan.featured
+                      ? "bg-signal-500 text-white hover:bg-signal-400 hover:shadow-lg hover:shadow-signal-500/20"
+                      : "bg-white/[0.05] text-white/60 hover:bg-white/[0.1] hover:text-white border border-white/[0.06]"
+                  }`}
+                >
+                  Discuss {plan.name}
+                </Link>
               </div>
             ))}
           </div>

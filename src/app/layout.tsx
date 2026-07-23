@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import Analytics from "@/components/Analytics";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import JsonLd from "@/components/JsonLd";
@@ -80,6 +81,7 @@ export default function RootLayout({
         <Navigation />
         <main id="main-content" className="flex-1 pt-16">{children}</main>
         <Footer />
+        <Analytics />
         <JsonLd data={[organizationSchema(), websiteSchema()]} />
       </body>
     </html>

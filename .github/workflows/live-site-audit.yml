@@ -1,0 +1,31 @@
+name: Live site audit
+
+on:
+  schedule:
+    - cron: "23 11 * * *"
+  workflow_dispatch:
+    inputs:
+      site_url:
+        description: Site origin to audit
+        required: false
+        default: https://www.localsignalwebsites.studio
+
+permissions:
+  contents: read
+
+jobs:
+  live-audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Audit production
+        env:
+          SITE_URL: ${{ github.event.inputs.site_url || 'https://www.localsignalwebsites.studio' }}
+          LIVE: "1"
+        run: node scripts/site-audit.mjs

@@ -2,6 +2,9 @@ import type { MetadataRoute } from "next";
 
 const BASE_URL = "https://www.localsignalwebsites.studio";
 
+// Bump when page content meaningfully changes, not on every deploy.
+const LAST_UPDATED = new Date("2026-07-23");
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const pages = [
     { path: "/", priority: 1.0, changeFrequency: "weekly" as const },
@@ -13,7 +16,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   return pages.map((page) => ({
     url: `${BASE_URL}${page.path}`,
-    lastModified: new Date(),
+    lastModified: LAST_UPDATED,
     changeFrequency: page.changeFrequency,
     priority: page.priority,
   }));
